@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biểu Đồ Xuất Kho Belt Quý 2/2025 (01/04/2025 - 24/06/2025) </title>
+  <title>Biểu Đồ Xuất Kho Belt Q2 (01.04.2025 - 24.06.2025)</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     .chart-container {
@@ -14,20 +14,30 @@
 </head>
 <body>
   <div class="chart-container">
-  <h2> Thống kê số lường belt được xuất trong Quý 2/2025 (01/04/2025 - 24/06/2025) </h2>
+    <h2>Thống kê số lượng belt được xuất trong Q2 (01.04.2025 - 24.06.2025)</h2>
   </div>
+  
   <div class="chart-container">
-    <h3>Tỷ Trọng Xuất Kho Belt Quý 2/2025 (01/04/2025 - 24/06/2025)</h3>
+    <h2>Tỷ Trọng Mục Đích Xuất Kho Belt </h2>
     <canvas id="doughnutChart"></canvas>
   </div>
 
   <div class="chart-container">
-    <h3>Tổng Lượng Xuất Các Loại Belt (Quý 2/2025)</h3>
+    <h2>Tổng Lượng Xuất Các Loại Belt Hàng Đầu Theo Tháng </h2>
     <canvas id="topBeltBarChart"></canvas>
   </div>
 
   <div class="chart-container">
-    <h3>Chi Tiết Số Lượng Belt Xuất Kho Theo Mục Đích (Quý 2/2025)</h3>
+    <h2>Phân Tích Xuất Kho Theo Tháng</h2>
+    <ul>
+      <li><strong>Tháng 4/2025:</strong> Xuất kho 125 chiếc, trong đó Bảo trì chiếm ưu thế với tỷ lệ cao, cho thấy nhu cầu duy tu đầu quý lớn.</li>
+      <li><strong>Tháng 5/2025:</strong> Tổng xuất kho đạt 175 chiếc, trong đó tỷ lệ Sửa chữa tăng mạnh, phản ánh phát sinh nhiều yêu cầu xử lý sự cố.</li>
+      <li><strong>Tháng 6/2025:</strong> Dữ liệu đang được cập nhật, dự kiến hoàn thiện trong báo cáo tiếp theo.</li>
+    </ul>
+  </div>
+
+  <div class="chart-container">
+    <h2>Chi Tiết Số Lượng Belt Xuất Kho Theo Mục Đích</h2>
     <canvas id="stackedHorizontalBarChart"></canvas>
   </div>
 
@@ -42,6 +52,7 @@
           "Belt Clamp V4",
           "Belt Stacker (ngắn/dài)",
           "Belt Dọc Diebold",
+          "Belt DB 860",
           "Belt MSB (ngang/dọc)",
           "Belt 31",
           "Belt moto bơm s2",
@@ -50,12 +61,12 @@
         datasets: [
           {
             label: "Bảo Trì",
-            data: [67, 62, 0, 0, 51, 6, 3, 0, 3],
+            data: [67, 62, 0, 0, 51, 6, 6, 3, 0, 3],
             backgroundColor: "rgba(54, 162, 235, 0.7)"
           },
           {
             label: "Sửa chữa",
-            data: [43, 86, 52, 40, 0, 0, 0, 1, 0],
+            data: [43, 86, 52, 40, 0, 0, 0, 0, 1, 0],
             backgroundColor: "rgba(255, 99, 132, 0.7)"
           }
         ]
@@ -89,13 +100,31 @@
       type: 'bar',
       data: {
         labels: ["CMD-V4 Belt", "Belt 396 (tổng)", "Belt Clamp V4", "Belt Stacker (ngắn/dài)", "Belt Dọc Diebold"],
-        datasets: [{
-          label: "Tổng Số Lượng Xuất",
-          data: [148, 110, 52, 40, 51],
-          backgroundColor: "rgba(75, 192, 192, 0.7)"
-        }]
+        datasets: [
+          {
+            label: "Tháng 4/2025",
+            data: [40, 36, 15, 12, 22],
+            backgroundColor: "rgba(54, 162, 235, 0.7)"
+          },
+          {
+            label: "Tháng 5/2025",
+            data: [108, 74, 37, 28, 29],
+            backgroundColor: "rgba(255, 159, 64, 0.7)"
+          },
+          {
+            label: "Tháng 6/2025 (Đang cập nhật)",
+            data: [0, 0, 0, 0, 0],
+            backgroundColor: "rgba(201, 203, 207, 0.7)"
+          }
+        ]
       },
-      options: { responsive: true, scales: { y: { beginAtZero: true } } }
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true },
+          x: { stacked: true }
+        }
+      }
     });
   </script>
 </body>
