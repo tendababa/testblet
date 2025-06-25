@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biểu Đồ Xuất Kho Belt Quý 2/2025</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .chart-container {
+      width: 700px;
+      margin: 40px auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-container">
+    <h2>Chi Tiết Số Lượng Belt Xuất Kho Theo Mục Đích (Quý 2/2025 - Thống Kê Thực Tế)</h2>
+    <canvas id="stackedHorizontalBarChart"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <h2>Tỷ Trọng Mục Đích Xuất Kho Belt (Tổng Quý 2/2025)</h2>
+    <canvas id="doughnutChart"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <h2>Tổng Lượng Xuất Các Loại Belt Hàng Đầu (Quý 2/2025)</h2>
+    <canvas id="topBeltBarChart"></canvas>
+  </div>
+
+  <script>
+    const stackedHorizontalBarCtx = document.getElementById('stackedHorizontalBarChart').getContext('2d');
+    new Chart(stackedHorizontalBarCtx, {
+      type: 'bar',
+      data: {
+        labels: [
+          "Belt 396 (tổng)",
+          "CMD-V4 Belt",
+          "Belt Clamp V4",
+          "Belt Stacker (ngắn/dài)",
+          "Belt Dọc Diebold",
+          "Belt DB 860",
+          "Belt MSB (ngang/dọc)",
+          "Belt 31",
+          "Belt moto bơm s2",
+          "Khác"
+        ],
+        datasets: [
+          {
+            label: "Bảo Trì",
+            data: [67, 62, 0, 0, 51, 6, 6, 3, 0, 3],
+            backgroundColor: "rgba(54, 162, 235, 0.7)"
+          },
+          {
+            label: "Sửa chữa",
+            data: [43, 86, 52, 40, 0, 0, 0, 0, 1, 0],
+            backgroundColor: "rgba(255, 99, 132, 0.7)"
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: { stacked: true, beginAtZero: true, title: { display: true, text: "Số Lượng Xuất Kho" } },
+          y: { stacked: true }
+        }
+      }
+    });
+
+    const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+    new Chart(doughnutCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ["Bảo Trì", "Sửa chữa"],
+        datasets: [{
+          label: "Số Lượng Belt",
+          data: [204, 222],
+          backgroundColor: ["rgba(54, 162, 235, 0.8)", "rgba(255, 99, 132, 0.8)"]
+        }]
+      },
+      options: { responsive: true }
+    });
+
+    const topBeltBarCtx = document.getElementById('topBeltBarChart').getContext('2d');
+    new Chart(topBeltBarCtx, {
+      type: 'bar',
+      data: {
+        labels: ["CMD-V4 Belt", "Belt 396 (tổng)", "Belt Clamp V4", "Belt Stacker (ngắn/dài)", "Belt Dọc Diebold"],
+        datasets: [{
+          label: "Tổng Số Lượng Xuất",
+          data: [148, 110, 52, 40, 51],
+          backgroundColor: "rgba(75, 192, 192, 0.7)"
+        }]
+      },
+      options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+  </script>
+</body>
+</html>
