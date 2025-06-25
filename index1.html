@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biểu Đồ Xuất Kho Belt Q2 (01.04.2025 - 24.06.2025)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .chart-container {
+      width: 700px;
+      margin: 40px auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-container">
+    <h2>Thống kê số lượng belt được xuất trong Q2 (01.04.2025 - 24.06.2025)</h2>
+  </div>
+  
+  <div class="chart-container">
+    <h3>Tỷ Trọng Mục Đích Xuất Kho Belt </h3>
+    <canvas id="doughnutChart"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <h3>Tổng Lượng Xuất Các Loại Belt Hàng Đầu Theo Tháng </h3>
+    <canvas id="topBeltBarChart"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <h3>Phân Tích Xuất Kho Theo Tháng</h3>
+    <ul>
+      <li><strong>Tháng 4/2025:</strong> Xuất kho 125 chiếc, trong đó Bảo trì chiếm ưu thế với tỷ lệ cao, cho thấy nhu cầu duy tu đầu quý lớn.</li>
+      <li><strong>Tháng 5/2025:</strong> Tổng xuất kho đạt 175 chiếc, trong đó tỷ lệ Sửa chữa tăng mạnh, phản ánh phát sinh nhiều yêu cầu xử lý sự cố.</li>
+      <li><strong>Tháng 6/2025:</strong> Dữ liệu đang được cập nhật, dự kiến hoàn thiện trong báo cáo tiếp theo.</li>
+    </ul>
+  </div>
+
+  <div class="chart-container">
+    <h3>Chi Tiết Số Lượng Belt Xuất Kho Theo Mục Đích</h3>
+    <canvas id="stackedHorizontalBarChart"></canvas>
+  </div>
+
+  <script>
+    const stackedHorizontalBarCtx = document.getElementById('stackedHorizontalBarChart').getContext('2d');
+    new Chart(stackedHorizontalBarCtx, {
+      type: 'bar',
+      data: {
+        labels: [
+          "Belt 396 (Double Pick S2)",
+          "CMD-V4 Belt (Extractor)",
+          "Belt Clamp V4",
+          "Belt Stacker (ngắn/dài)",
+          "Belt Dọc Diebold",
+          "Belt MSB (ngang/dọc)",
+          "Belt 331",
+          "Belt moto pump s2",
+          "Khác"
+        ],
+        datasets: [
+          {
+            label: "Bảo Trì",
+            data: [67, 62, 0, 0, 51, 6, 3, 0, 3],
+            backgroundColor: "rgba(54, 162, 235, 0.7)"
+          },
+          {
+            label: "Sửa chữa",
+            data: [43, 86, 52, 40, 0, 0, 0, 1, 0],
+            backgroundColor: "rgba(255, 99, 132, 0.7)"
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: { stacked: true, beginAtZero: true, title: { display: true, text: "Số Lượng Xuất Kho" } },
+          y: { stacked: true }
+        }
+      }
+    });
+
+    const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+    new Chart(doughnutCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ["Bảo Trì", "Sửa chữa"],
+        datasets: [{
+          label: "Số Lượng Belt",
+          data: [204, 222],
+          backgroundColor: ["rgba(54, 162, 235, 0.8)", "rgba(255, 99, 132, 0.8)"]
+        }]
+      },
+      options: { responsive: true }
+    });
+
+    const topBeltBarCtx = document.getElementById('topBeltBarChart').getContext('2d');
+    new Chart(topBeltBarCtx, {
+      type: 'bar',
+      data: {
+        labels: ["CMD-V4 Belt (Extractor)", "Belt 396 (Double pick S2)", "Belt Clamp V4", "Belt Stacker (ngắn/dài)", "Belt Dọc Diebold"],
+        datasets: [
+          {
+            label: "Tháng 4/2025",
+            data: [40, 36, 15, 12, 22],
+            backgroundColor: "rgba(54, 162, 235, 0.7)"
+          },
+          {
+            label: "Tháng 5/2025",
+            data: [108, 74, 37, 28, 29],
+            backgroundColor: "rgba(255, 159, 64, 0.7)"
+          },
+          {
+            label: "Tháng 6/2025 (Đang cập nhật)",
+            data: [0, 0, 0, 0, 0],
+            backgroundColor: "rgba(201, 203, 207, 0.7)"
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true },
+          x: { stacked: true }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

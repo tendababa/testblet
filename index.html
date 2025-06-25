@@ -3,128 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biểu Đồ Xuất Kho Belt Q2 (01.04.2025 - 24.06.2025)</title>
+  <title>Báo cáo Tổng Hợp Belt CMD V4 và Dữ liệu Xuất Kho</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    .chart-container {
-      width: 700px;
-      margin: 40px auto;
-    }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2 { color: #333; }
+    .chart-container { width: 90%; max-width: 900px; margin: 30px auto; }
+    .note { color: red; font-weight: bold; }
   </style>
 </head>
 <body>
-  <div class="chart-container">
-    <h2>Thống kê số lượng belt được xuất trong Q2 (01.04.2025 - 24.06.2025)</h2>
-  </div>
-  
-  <div class="chart-container">
-    <h3>Tỷ Trọng Mục Đích Xuất Kho Belt </h3>
-    <canvas id="doughnutChart"></canvas>
-  </div>
+  <h1>Báo cáo Tổng Hợp Belt CMD V4</h1>
 
+  <h2>Thời gian từ 01.04.2025 - 24.06.2025</h2>
+
+  <h2>2. Biểu đồ Xuất kho CMD-V4 theo từng tháng từ 01.04.2025</h2>
   <div class="chart-container">
-    <h3>Tổng Lượng Xuất Các Loại Belt Hàng Đầu Theo Tháng </h3>
-    <canvas id="topBeltBarChart"></canvas>
+    <canvas id="barChartThang"></canvas>
   </div>
 
+  <h2>3. So sánh Xuất CMD-V4 với các loại Belt khác theo từng tháng</h2>
   <div class="chart-container">
-    <h3>Phân Tích Xuất Kho Theo Tháng</h3>
-    <ul>
-      <li><strong>Tháng 4/2025:</strong> Xuất kho 125 chiếc, trong đó Bảo trì chiếm ưu thế với tỷ lệ cao, cho thấy nhu cầu duy tu đầu quý lớn.</li>
-      <li><strong>Tháng 5/2025:</strong> Tổng xuất kho đạt 175 chiếc, trong đó tỷ lệ Sửa chữa tăng mạnh, phản ánh phát sinh nhiều yêu cầu xử lý sự cố.</li>
-      <li><strong>Tháng 6/2025:</strong> Dữ liệu đang được cập nhật, dự kiến hoàn thiện trong báo cáo tiếp theo.</li>
-    </ul>
+    <canvas id="soSanhTopBeltChart"></canvas>
   </div>
 
+  <h2>4. Phân tích xuất/nhập kho theo tháng</h2>
   <div class="chart-container">
-    <h3>Chi Tiết Số Lượng Belt Xuất Kho Theo Mục Đích</h3>
-    <canvas id="stackedHorizontalBarChart"></canvas>
+    <canvas id="stackedReworkSCChart"></canvas>
   </div>
 
-  <script>
-    const stackedHorizontalBarCtx = document.getElementById('stackedHorizontalBarChart').getContext('2d');
-    new Chart(stackedHorizontalBarCtx, {
-      type: 'bar',
-      data: {
-        labels: [
-          "Belt 396 (Double Pick S2)",
-          "CMD-V4 Belt (Extractor)",
-          "Belt Clamp V4",
-          "Belt Stacker (ngắn/dài)",
-          "Belt Dọc Diebold",
-          "Belt MSB (ngang/dọc)",
-          "Belt 331",
-          "Belt moto pump s2",
-          "Khác"
-        ],
-        datasets: [
-          {
-            label: "Bảo Trì",
-            data: [67, 62, 0, 0, 51, 6, 3, 0, 3],
-            backgroundColor: "rgba(54, 162, 235, 0.7)"
-          },
-          {
-            label: "Sửa chữa",
-            data: [43, 86, 52, 40, 0, 0, 0, 1, 0],
-            backgroundColor: "rgba(255, 99, 132, 0.7)"
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        indexAxis: 'y',
-        scales: {
-          x: { stacked: true, beginAtZero: true, title: { display: true, text: "Số Lượng Xuất Kho" } },
-          y: { stacked: true }
-        }
-      }
-    });
+  <h2>5. Chi Tiết Số Lượng Belt Xuất Kho Theo Mục Đích</h2>
+  <div class="chart-container">
+    <canvas id="mucDichChart"></canvas>
+  </div>
 
-    const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
-    new Chart(doughnutCtx, {
-      type: 'doughnut',
-      data: {
-        labels: ["Bảo Trì", "Sửa chữa"],
-        datasets: [{
-          label: "Số Lượng Belt",
-          data: [204, 222],
-          backgroundColor: ["rgba(54, 162, 235, 0.8)", "rgba(255, 99, 132, 0.8)"]
-        }]
-      },
-      options: { responsive: true }
-    });
+  <h2>6. Tồn cuối theo từng tháng (Thay thế kiểm hàng)</h2>
+  <div class="chart-container">
+    <canvas id="kiemHangChart"></canvas>
+  </div>
 
-    const topBeltBarCtx = document.getElementById('topBeltBarChart').getContext('2d');
-    new Chart(topBeltBarCtx, {
-      type: 'bar',
-      data: {
-        labels: ["CMD-V4 Belt (Extractor)", "Belt 396 (Double pick S2)", "Belt Clamp V4", "Belt Stacker (ngắn/dài)", "Belt Dọc Diebold"],
-        datasets: [
-          {
-            label: "Tháng 4/2025",
-            data: [40, 36, 15, 12, 22],
-            backgroundColor: "rgba(54, 162, 235, 0.7)"
-          },
-          {
-            label: "Tháng 5/2025",
-            data: [108, 74, 37, 28, 29],
-            backgroundColor: "rgba(255, 159, 64, 0.7)"
-          },
-          {
-            label: "Tháng 6/2025 (Đang cập nhật)",
-            data: [0, 0, 0, 0, 0],
-            backgroundColor: "rgba(201, 203, 207, 0.7)"
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: { beginAtZero: true },
-          x: { stacked: true }
-        }
-      }
-    });
-  </script>
+  <h2>7. Ghi chú tồn kho bất thường (CMD-V4)</h2>
+  <ul>
+    <li class="note">Ngày 2025-05-12 09:44:28 - Tồn kho âm -8 (Đối tác: E Minh HCM - Rework)</li>
+    <li class="note">Ngày 2025-05-12 08:52:23 - Tồn kho âm -6 (Đối tác: Minh Nguyễn HCM - Rework)</li>
+  </ul>
+
+<script>
+const thangLabels = ['2025-04', '2025-05', '2025-06'];
+const nhapKT = [44, 90, 16];
+const xuatKT = [-14, -34, -12];
+const nhapSC = [0, 2, 0];
+const xuatSC = [-36, -46, -6];
+
+new Chart(document.getElementById('barChartThang'), {
+  type: 'bar',
+  data: {
+    labels: thangLabels,
+    datasets: [
+      { label: 'Nhập Kỹ thuật', backgroundColor: 'blue', data: nhapKT },
+      { label: 'Xuất Kỹ thuật', backgroundColor: 'red', data: xuatKT },
+      { label: 'Nhập Sửa chữa', backgroundColor: 'lightblue', data: nhapSC },
+      { label: 'Xuất Sửa chữa', backgroundColor: 'pink', data: xuatSC }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { title: { display: true, text: 'Biểu đồ CMD-V4 theo từng tháng (giai đoạn 01.04 đến 24.06.2025)' } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+const labelsTop = ["CMD-V4 Belt (Extractor)", "Belt 396 (Double Pick S2)", "Belt Clamp V4", "Belt Stacker", "Belt Dọc Diebold"];
+const thang4 = [40, 36, 15, 12, 22];
+const thang5 = [22, 38, 22, 16, 7];
+const thang6 = [0, 0, 0, 0, 0];
+
+new Chart(document.getElementById('soSanhTopBeltChart'), {
+  type: 'bar',
+  data: {
+    labels: labelsTop,
+    datasets: [
+      { label: 'Tháng 4/2025', backgroundColor: 'rgba(54, 162, 235, 0.7)', data: thang4 },
+      { label: 'Tháng 5/2025', backgroundColor: 'rgba(255, 159, 64, 0.7)', data: thang5 },
+      { label: 'Tháng 6/2025 (Đang cập nhật...)', backgroundColor: 'rgba(201, 203, 207, 0.7)', data: thang6 }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { title: { display: true, text: 'So sánh CMD-V4 và các Belt khác theo từng tháng' } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+// Phân tích Xuất cho Kỹ thuật, Xuất cho Rework và Nhập lại theo tháng
+const xuatKTTheoThang = [-14, -34, -12];
+const xuatRework = [-36, -46, -6];
+const nhapLai = [4, 8, 0];
+
+new Chart(document.getElementById('stackedReworkSCChart'), {
+  type: 'bar',
+  data: {
+    labels: thangLabels,
+    datasets: [
+      { label: 'Xuất cho Kỹ thuật', backgroundColor: 'orange', data: xuatKTTheoThang },
+      { label: 'Xuất cho Rework (Sửa chữa)', backgroundColor: 'purple', data: xuatRework },
+      { label: 'Nhập lại (Từ Kỹ thuật trả về)', backgroundColor: 'green', data: nhapLai }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { title: { display: true, text: 'Phân tích xuất kho theo tháng: Xuất cho Kỹ thuật, Xuất cho Rework và Nhập lại' } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+// Chi tiết số lượng xuất theo mục đích
+const labelsMucDich = ["Bảo trì", "Sửa chữa", "Rework", "Khác"];
+const soLuongMucDich = [55, 72, 38, 5];
+
+new Chart(document.getElementById('mucDichChart'), {
+  type: 'doughnut',
+  data: {
+    labels: labelsMucDich,
+    datasets: [{ backgroundColor: ["blue", "red", "orange", "gray"], data: soLuongMucDich }]
+  },
+  options: {
+    responsive: true,
+    plugins: { title: { display: true, text: 'Chi Tiết Số Lượng Belt Xuất Kho Theo Mục Đích' } }
+  }
+});
+</script>
 </body>
 </html>
