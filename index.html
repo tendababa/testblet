@@ -18,17 +18,17 @@
   </div>
   
   <div class="chart-container">
-    <h2>Tỷ Trọng Mục Đích Xuất Kho Belt </h2>
+    <h3>Tỷ Trọng Mục Đích Xuất Kho Belt </h3>
     <canvas id="doughnutChart"></canvas>
   </div>
 
   <div class="chart-container">
-    <h2>Tổng Lượng Xuất Các Loại Belt Hàng Đầu Theo Tháng </h2>
+    <h3>Tổng Lượng Xuất Các Loại Belt Hàng Đầu Theo Tháng </h3>
     <canvas id="topBeltBarChart"></canvas>
   </div>
 
   <div class="chart-container">
-    <h2>Phân Tích Xuất Kho Theo Tháng</h2>
+    <h3>Phân Tích Xuất Kho Theo Tháng</h3>
     <ul>
       <li><strong>Tháng 4/2025:</strong> Xuất kho 125 chiếc, trong đó Bảo trì chiếm ưu thế với tỷ lệ cao, cho thấy nhu cầu duy tu đầu quý lớn.</li>
       <li><strong>Tháng 5/2025:</strong> Tổng xuất kho đạt 175 chiếc, trong đó tỷ lệ Sửa chữa tăng mạnh, phản ánh phát sinh nhiều yêu cầu xử lý sự cố.</li>
@@ -37,7 +37,7 @@
   </div>
 
   <div class="chart-container">
-    <h2>Chi Tiết Số Lượng Belt Xuất Kho Theo Mục Đích</h2>
+    <h3>Chi Tiết Số Lượng Belt Xuất Kho Theo Mục Đích</h3>
     <canvas id="stackedHorizontalBarChart"></canvas>
   </div>
 
@@ -47,26 +47,25 @@
       type: 'bar',
       data: {
         labels: [
-          "Belt 396 (tổng)",
-          "CMD-V4 Belt",
+          "Belt 396 (Double Pick S2)",
+          "CMD-V4 Belt (Extractor)",
           "Belt Clamp V4",
           "Belt Stacker (ngắn/dài)",
           "Belt Dọc Diebold",
-          "Belt DB 860",
           "Belt MSB (ngang/dọc)",
-          "Belt 31",
-          "Belt moto bơm s2",
+          "Belt 331",
+          "Belt moto pump s2",
           "Khác"
         ],
         datasets: [
           {
             label: "Bảo Trì",
-            data: [67, 62, 0, 0, 51, 6, 6, 3, 0, 3],
+            data: [67, 62, 0, 0, 51, 6, 3, 0, 3],
             backgroundColor: "rgba(54, 162, 235, 0.7)"
           },
           {
             label: "Sửa chữa",
-            data: [43, 86, 52, 40, 0, 0, 0, 0, 1, 0],
+            data: [43, 86, 52, 40, 0, 0, 0, 1, 0],
             backgroundColor: "rgba(255, 99, 132, 0.7)"
           }
         ]
@@ -99,7 +98,7 @@
     new Chart(topBeltBarCtx, {
       type: 'bar',
       data: {
-        labels: ["CMD-V4 Belt", "Belt 396 (tổng)", "Belt Clamp V4", "Belt Stacker (ngắn/dài)", "Belt Dọc Diebold"],
+        labels: ["CMD-V4 Belt (Extractor)", "Belt 396 (Double pick S2)", "Belt Clamp V4", "Belt Stacker (ngắn/dài)", "Belt Dọc Diebold"],
         datasets: [
           {
             label: "Tháng 4/2025",
